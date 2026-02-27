@@ -8,8 +8,9 @@ on:
 
 env:
   # The GLFW commit referenced by nanogui (d005029e) was force-pushed away
-  # from wjakob/glfw. Use this compatible commit instead.
-  GLFW_FALLBACK_REF: "3dea4ba34a4b10b70a68643b8205eb707ff29f5e"
+  # from wjakob/glfw. Use this compatible commit from the build-system-tweaks
+  # branch which has the glfw_objects target that nanogui requires.
+  GLFW_FALLBACK_REF: "695b66d17a07fec1ec11e5e7268ccf1b843e1764"
 
 jobs:
   build-windows:
@@ -20,10 +21,10 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init
+          git submodule update --init --no-recurse-submodules
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone https://github.com/wjakob/glfw ext/glfw
+          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
           cd ext/glfw
           git checkout ${{ env.GLFW_FALLBACK_REF }}
 
@@ -51,10 +52,10 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init
+          git submodule update --init --no-recurse-submodules
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone https://github.com/wjakob/glfw ext/glfw
+          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
           cd ext/glfw
           git checkout ${{ env.GLFW_FALLBACK_REF }}
 
@@ -89,10 +90,10 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init
+          git submodule update --init --no-recurse-submodules
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone https://github.com/wjakob/glfw ext/glfw
+          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
           cd ext/glfw
           git checkout ${{ env.GLFW_FALLBACK_REF }}
 
@@ -120,10 +121,10 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init
+          git submodule update --init --no-recurse-submodules
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone https://github.com/wjakob/glfw ext/glfw
+          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
           cd ext/glfw
           git checkout ${{ env.GLFW_FALLBACK_REF }}
 
