@@ -21,7 +21,7 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init --no-recurse-submodules
+          git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
           git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
@@ -52,7 +52,7 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init --no-recurse-submodules
+          git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
           git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
@@ -90,7 +90,7 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init --no-recurse-submodules
+          git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
           git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
@@ -121,7 +121,7 @@ jobs:
 
       - name: Init submodules
         run: |
-          git submodule update --init --no-recurse-submodules
+          git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
           git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
