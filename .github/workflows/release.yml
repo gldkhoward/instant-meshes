@@ -72,7 +72,7 @@ jobs:
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DNANOGUI_USE_GLAD=ON
         env:
-          CXXFLAGS: "-mno-rtm"
+          CXXFLAGS: "-mno-rtm -Wno-error=changes-meaning"
 
       - name: Build
         run: cmake --build build --parallel
@@ -89,7 +89,7 @@ jobs:
 
   build-macos-intel:
     name: Build macOS Intel
-    runs-on: macos-13
+    runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
 
