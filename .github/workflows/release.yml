@@ -6,14 +6,26 @@ on:
       - "v*"
   workflow_dispatch:
 
+env:
+  # The GLFW commit referenced by nanogui (d005029e) was force-pushed away
+  # from wjakob/glfw. Use this compatible commit instead.
+  GLFW_FALLBACK_REF: "3dea4ba34a4b10b70a68643b8205eb707ff29f5e"
+
 jobs:
   build-windows:
     name: Build Windows x64
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Init submodules
+        run: |
+          git submodule update --init
+          cd ext/nanogui
+          git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          git clone https://github.com/wjakob/glfw ext/glfw
+          cd ext/glfw
+          git checkout ${{ env.GLFW_FALLBACK_REF }}
 
       - name: Configure
         run: cmake -G "Visual Studio 17 2022" -A x64 -B build
@@ -36,8 +48,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Init submodules
+        run: |
+          git submodule update --init
+          cd ext/nanogui
+          git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          git clone https://github.com/wjakob/glfw ext/glfw
+          cd ext/glfw
+          git checkout ${{ env.GLFW_FALLBACK_REF }}
 
       - name: Install dependencies
         run: |
@@ -67,8 +86,15 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Init submodules
+        run: |
+          git submodule update --init
+          cd ext/nanogui
+          git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          git clone https://github.com/wjakob/glfw ext/glfw
+          cd ext/glfw
+          git checkout ${{ env.GLFW_FALLBACK_REF }}
 
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=x86_64
@@ -91,8 +117,15 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
+
+      - name: Init submodules
+        run: |
+          git submodule update --init
+          cd ext/nanogui
+          git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          git clone https://github.com/wjakob/glfw ext/glfw
+          cd ext/glfw
+          git checkout ${{ env.GLFW_FALLBACK_REF }}
 
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64

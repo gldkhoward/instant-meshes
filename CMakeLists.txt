@@ -66,7 +66,11 @@ set(NANOGUI_BUILD_EXAMPLE OFF CACHE BOOL " " FORCE)
 set(NANOGUI_BUILD_SHARED  OFF CACHE BOOL " " FORCE)
 set(NANOGUI_BUILD_PYTHON  OFF CACHE BOOL " " FORCE)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/ext/nanogui ext_build/nanogui)
-set_property(TARGET nanogui glfw glfw_objects bin2c PROPERTY FOLDER "dependencies")
+foreach(dep_target nanogui glfw glfw_objects bin2c)
+  if(TARGET ${dep_target})
+    set_property(TARGET ${dep_target} PROPERTY FOLDER "dependencies")
+  endif()
+endforeach()
 
 # Build TBB
 set(TBB_BUILD_STATIC ON CACHE BOOL " " FORCE)
