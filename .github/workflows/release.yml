@@ -27,6 +27,7 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
 
@@ -57,6 +58,7 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
 
@@ -94,6 +96,7 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
 
@@ -124,6 +127,7 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
+          rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
 
