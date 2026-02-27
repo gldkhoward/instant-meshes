@@ -30,6 +30,7 @@ jobs:
           rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
+          sed -i.bak '/cmake_policy.*CMP0042.*OLD/d' ext/glfw/CMakeLists.txt
 
       - name: Configure
         run: cmake -G "Visual Studio 17 2022" -A x64 -B build
@@ -61,6 +62,7 @@ jobs:
           rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
+          sed -i.bak '/cmake_policy.*CMP0042.*OLD/d' ext/glfw/CMakeLists.txt
 
       - name: Install dependencies
         run: |
@@ -99,6 +101,7 @@ jobs:
           rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
+          sed -i.bak '/cmake_policy.*CMP0042.*OLD/d' ext/glfw/CMakeLists.txt
 
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=x86_64
@@ -130,6 +133,7 @@ jobs:
           rm -rf ext/glfw
           curl -sL "https://github.com/wjakob/glfw/archive/${GLFW_FALLBACK_REF}.tar.gz" | tar xz -C ext
           mv ext/glfw-${GLFW_FALLBACK_REF}* ext/glfw
+          sed -i.bak '/cmake_policy.*CMP0042.*OLD/d' ext/glfw/CMakeLists.txt
 
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64
