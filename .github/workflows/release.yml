@@ -10,7 +10,7 @@ env:
   # The GLFW commit referenced by nanogui (d005029e) was force-pushed away
   # from wjakob/glfw. Use this compatible commit from the build-system-tweaks
   # branch which has the glfw_objects target that nanogui requires.
-  GLFW_FALLBACK_REF: "695b66d17a07fec1ec11e5e7268ccf1b843e1764"
+  GLFW_FALLBACK_REF: "0ff30d648506e19a1c54a2b2a2d09c4e59b86922"
 
 jobs:
   build-windows:
@@ -24,9 +24,8 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
-          cd ext/glfw
-          git checkout ${{ env.GLFW_FALLBACK_REF }}
+          curl -sL "https://github.com/wjakob/glfw/archive/${{ env.GLFW_FALLBACK_REF }}.tar.gz" | tar xz -C ext
+          mv ext/glfw-${{ env.GLFW_FALLBACK_REF }}* ext/glfw
 
       - name: Configure
         run: cmake -G "Visual Studio 17 2022" -A x64 -B build
@@ -55,9 +54,8 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
-          cd ext/glfw
-          git checkout ${{ env.GLFW_FALLBACK_REF }}
+          curl -sL "https://github.com/wjakob/glfw/archive/${{ env.GLFW_FALLBACK_REF }}.tar.gz" | tar xz -C ext
+          mv ext/glfw-${{ env.GLFW_FALLBACK_REF }}* ext/glfw
 
       - name: Install dependencies
         run: |
@@ -93,9 +91,8 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
-          cd ext/glfw
-          git checkout ${{ env.GLFW_FALLBACK_REF }}
+          curl -sL "https://github.com/wjakob/glfw/archive/${{ env.GLFW_FALLBACK_REF }}.tar.gz" | tar xz -C ext
+          mv ext/glfw-${{ env.GLFW_FALLBACK_REF }}* ext/glfw
 
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=x86_64
@@ -124,9 +121,8 @@ jobs:
           git submodule update --init ext/dset ext/nanogui ext/pcg32 ext/pss ext/tbb
           cd ext/nanogui
           git submodule update --init ext/eigen ext/nanovg ext/pybind11
-          git clone --branch build-system-tweaks https://github.com/wjakob/glfw ext/glfw
-          cd ext/glfw
-          git checkout ${{ env.GLFW_FALLBACK_REF }}
+          curl -sL "https://github.com/wjakob/glfw/archive/${{ env.GLFW_FALLBACK_REF }}.tar.gz" | tar xz -C ext
+          mv ext/glfw-${{ env.GLFW_FALLBACK_REF }}* ext/glfw
 
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES=arm64
