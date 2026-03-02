@@ -109,6 +109,9 @@ jobs:
       - name: Build
         run: cmake --build build --parallel
 
+      - name: Ad-hoc codesign
+        run: codesign --force --deep -s - "build/Instant Meshes.app"
+
       - name: Package
         run: |
           cd build
@@ -140,6 +143,9 @@ jobs:
 
       - name: Build
         run: cmake --build build --parallel
+
+      - name: Ad-hoc codesign
+        run: codesign --force --deep -s - "build/Instant Meshes.app"
 
       - name: Package
         run: |
